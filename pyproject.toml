@@ -1,0 +1,22 @@
+[project]
+name = "openai-00"
+version = "0.1.0"
+description = "A Python project using Google Gemini AI for AI-powered assistance"
+readme = "README.md"
+authors = [
+    { name = "Sami Ahmed", email = "saminazirqureshi1@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "google-generativeai>=0.3.0",
+    "streamlit>=1.28.0",
+    "streamlit-option-menu>=0.3.6",
+]
+
+[project.scripts]
+openai-00 = "openai_00:main"
+
+[build-system]
+requires = ["uv_build>=0.8.13,<0.9.0"]
+build-backend = "uv_build"
