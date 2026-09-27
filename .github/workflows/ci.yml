@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install dependencies from uv.lock
+        run: uv sync --locked
+      - name: Lint (syntax errors and undefined names)
+        run: uvx ruff check --select E9,F63,F7,F82 .
+      - name: Byte-compile all modules
+        run: uv run python -m compileall -q streamlit_app.py advanced_streamlit_app.py app.py src
+      - name: Import check of runtime dependencies
+        run: uv run python -c "import streamlit, google.generativeai, streamlit_option_menu, dotenv; print('ok')"
