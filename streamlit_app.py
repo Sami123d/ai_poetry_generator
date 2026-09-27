@@ -81,13 +81,13 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 def generate_poetry(api_key, poetry_type, custom_topic, language, style):
-    """Generate poetry using Open AI sdk"""
+    """Generate poetry using Google Gemini"""
     try:
         # Configure Gemini API
         genai.configure(api_key=api_key)
         
         # Create model
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel(os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash'))
         
         # Create prompt based on type and language
         prompts = {
@@ -133,7 +133,7 @@ def main():
     st.markdown("""
     <div class="main-header">
         <h1>🤖 AI Poetry Generator</h1>
-        <p>Create beautiful Pakistani poetry using OpenAI Agents SDK</p>
+        <p>Create beautiful Pakistani poetry using Google Gemini</p>
     </div>
     """, unsafe_allow_html=True)
     

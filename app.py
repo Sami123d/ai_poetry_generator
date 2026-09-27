@@ -15,7 +15,7 @@ def generate_poetry(api_key, poetry_type, custom_topic, language):
         genai.configure(api_key=api_key)
         
         # Create model
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel(os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash'))
         
         # Create prompt based on type and language
         prompts = {

@@ -35,7 +35,7 @@ else:
 
     try:
         # Create a Gemini model instance
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel(os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash'))
         
         # Generate content
         prompt = "Write a pakitani poetry roman urdu about recursion in artificial intelligence."
